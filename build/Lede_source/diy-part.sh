@@ -9,8 +9,10 @@
 
 mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.com/281677160/openwrt-package/usb/block/10-mount > files/etc/hotplug.d/block/10-mount
 
+git clone https://github.com/kenzok8/small-package package/small-package
+
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.2.1'                                  # 默认 IP 地址
+uci set network.lan.ipaddr='192.168.2.1'                                   # 默认 IP 地址
 uci set network.lan.proto='static'                                          # 静态 IP
 uci set network.lan.type='bridge'                                           # 接口类型：桥接
 uci set network.lan.ifname='eth0'                                           # 网络端口：默认 eth0，第一个接口
