@@ -9,10 +9,6 @@
 
 mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.com/281677160/openwrt-package/usb/block/10-mount > files/etc/hotplug.d/block/10-mount
 
-git clone https://github.com/kenzok8/small-package package/small-package
-
-
-
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                             # 设置密码为空
 
 # 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
