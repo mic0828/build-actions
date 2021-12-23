@@ -12,19 +12,13 @@ mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.c
 git clone https://github.com/kenzok8/small-package package/small-package
 
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.2.1'                                   # 默认 IP 地址
-uci set network.lan.proto='static'                                          # 静态 IP
-uci set network.lan.type='bridge'                                           # 接口类型：桥接
-uci set network.lan.ifname='eth0'                                           # 网络端口：默认 eth0，第一个接口
-uci set network.lan.netmask='255.255.255.0'                                 # 子网掩码
-uci set network.lan.gateway='192.168.1.1'                                   # 默认网关地址（主路由 IP）
-uci set network.lan.dns='192.168.1.1'                                       # 默认上游 DNS 地址
+uci set network.lan.ipaddr='192.168.2.1'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
+uci set network.lan.gateway='192.168.1.1'                                   # IPv4 网关
+uci set network.lan.dns='223.5.5.5'                                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
-#uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
-#uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
 uci set system.@system[0].hostname='OpenWrt-K2P'                            # 修改主机名称为OpenWrt-K2P
-sed -i 's/\/bin\/login/\/bin\/login -f root/' /etc/config/ttyd              # 设置ttyd免帐号登录，如若开启，进入OPENWRT后可能要重启一次才生效
 EOF
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                             # 设置密码为空
