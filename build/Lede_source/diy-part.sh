@@ -11,16 +11,7 @@ mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.c
 
 git clone https://github.com/kenzok8/small-package package/small-package
 
-cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.2.1'                                    # IPv4 地址(openwrt后台地址)
-uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.1.1'                                   # IPv4 网关
-uci set network.lan.dns='223.5.5.5'                                         # DNS(多个DNS要用空格分开)
-uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
-uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
-uci set system.@system[0].hostname='OpenWrt-K2P'                            # 修改主机名称为OpenWrt-K2P
-sed -i 's/\/bin\/login/\/bin\/login -f root/' /etc/config/ttyd              # 设置ttyd免帐号登录，如若开启，进入OPENWRT后可能要重启一次才生效
-EOF
+
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                             # 设置密码为空
 
